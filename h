@@ -37,23 +37,19 @@ Tab:AddButton({
        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
   	end    
 })
-Tab:AddButton("TuanAnhIOS_Button", {
-    Title = "Auto Nhặt Rương",
-    Description = "Bật Tắt Chest TAnhDzai✅",
-    Callback = function(value)
-        _G.TuanAnhIOS_Enabled = value
+local isScriptEnabled = false -- Biến trạng thái để theo dõi script đang bật hay tắt
 
-        if value then
-            -- Bật script (chạy trên luồng riêng)
-            ScriptThread = task.spawn(function()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/AnhDzaiScript/AutoChest/refs/heads/main/AutoChestTuanAnhIOS.Lua"))()
-            end)
+Tab:AddToggle({
+    Name = "Bật/Tắt Redz Hub",
+    Default = false,
+    Callback = function(state)
+        isScriptEnabled = state
+        if isScriptEnabled then
+            print("Script đã được bật.")
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/BloxFruits/refs/heads/main/Source.lua"))(Settings)
         else
-            -- Dừng script bằng cách hủy luồng
-            if ScriptThread then
-                task.cancel(ScriptThread)
-                ScriptThread = nil
-            end
+            print("Script đã được tắt.")
+            -- Nếu script có cơ chế dừng thì thêm mã dừng ở đây (nếu không có thì có thể reset nhân vật hoặc reload game để ngừng script)
         end
     end
 })

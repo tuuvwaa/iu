@@ -40,13 +40,13 @@ Tab:AddButton({
 local isScriptEnabled = false -- Biến trạng thái để theo dõi script đang bật hay tắt
 
 Tab:AddToggle({
-    Name = "Bật/Tắt Redz Hub",
+    Name = "Auto Chest",
     Default = false,
     Callback = function(state)
         isScriptEnabled = state
         if isScriptEnabled then
             print("Script đã được bật.")
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/BloxFruits/refs/heads/main/Source.lua"))(Settings)
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/AnhDzaiScript/AutoChest/refs/heads/main/AutoChestTuanAnhIOS.Lua"))()
         else
             print("Script đã được tắt.")
             -- Nếu script có cơ chế dừng thì thêm mã dừng ở đây (nếu không có thì có thể reset nhân vật hoặc reload game để ngừng script)
